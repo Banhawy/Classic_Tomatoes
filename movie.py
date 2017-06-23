@@ -6,16 +6,11 @@ class Movie(media.Media):
     def __init__(self, title):
         media.Media.__init__(self, title)
 
-    def get_tagline(self):
-        query_api_url = "https://api.themoviedb.org/3/movie/" + str(self.movie_id) + """?language=en
-        -US&api_key=873c09566ed2be62fbd02102e48c399e"""
-        details = requests.get(query_api_url).json()
-        self.tagline = details["tagline"]
-        print self.tagline
+        # GET Movie tagline
+        self.query_api_url = "https://api.themoviedb.org/3/movie/" + str(self.movie_id) + """?langua
+        ge=en-US&api_key=873c09566ed2be62fbd02102e48c399e"""
+        self.details = requests.get(self.query_api_url).json()
+        self.tagline = self.details["tagline"]
 
-    def get_release_date(self):
-        query_api_url = "https://api.themoviedb.org/3/movie/" + str(self.movie_id) + """?language=en
-        -US&api_key=873c09566ed2be62fbd02102e48c399e"""
-        details = requests.get(query_api_url).json()
-        self.release_date = details["release_date"]
-        print self.release_date
+        # GET movie release date
+        self.release_date = self.details["release_date"]

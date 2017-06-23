@@ -1,9 +1,9 @@
 import movie
 import fresh_tomatoes
 
-toy_story = movie.Movie("Toy Story")
+toy_story = movie.Movie("Titanic")
 
-avatar = movie.Movie("Avatar")
+avatar = movie.Movie("Groundhog Day")
 
 alien = movie.Movie("Alien")
 
