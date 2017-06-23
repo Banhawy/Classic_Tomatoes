@@ -3,8 +3,8 @@ import requests
 
 class Movie(media.Media):
     """"This class stores Movie related information"""
-    def __init__(self, title, poster_image):
-        media.Media.__init__(self, title, poster_image)
+    def __init__(self, title):
+        media.Media.__init__(self, title)
 
     def get_tagline(self):
         query_api_url = "https://api.themoviedb.org/3/movie/" + str(self.movie_id) + """?language=en
