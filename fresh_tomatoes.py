@@ -58,14 +58,22 @@ main_page_head_1 = '''
             }
         </style>
             '''
+# Javascript section            
 main_page_head_2 = '''
         <script type="text/javascript" charset="utf-8">
         {js_snippets}
+         // Animate in the movies when the page loads
+        $(document).ready(function () {{
+          $('.movie-tile').hide().first().show("fast", function showNext() {{
+            $(this).next("div").show("fast", showNext);
+            $('.modal').hide();
+          }});
+        }});
         </script>
     </head>
 '''
 
-# Moved Javascript to own variable to prevent header <!DOCTYPE html> tage duplication in rendered html document
+# Replicate this snippet for each movie added to data-bind their individual dates and descriptions
 javascript_snippet = '''
     // Pause the video when the modal is closed
     $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {{
@@ -127,7 +135,7 @@ movie_card_content = '''
 
 # A single movie entry html template
 movie_tile_content = '''
-    <div class="col-md-6 col-lg-4 movie-tile-{movie_id} text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#poster-{movie_id}">
+    <div class="col-md-6 col-lg-4 movie-tile movie-tile-{movie_id} text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#poster-{movie_id}">
         <img src="{poster_image_url}" width="220" height="342">
         <h2>{movie_title}</h2>
         <p><em>{movie_tagline}</em></p>
