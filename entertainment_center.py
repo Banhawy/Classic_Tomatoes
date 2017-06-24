@@ -1,31 +1,20 @@
 import movie
-import fresh_tomatoes
+import classic_tomatoes
 
-forrest_gump = movie.Movie("Forrest Gump")
+# Add the names of the movies to be displayed on the page to this list
+movie_list = [
+    "Groundhog Day", "Alien", "The Godfather 2",
+    "Mortal Kombat", "Rocky", "La La Land",
+    "The Green Mile", "Pulp Fiction", "Forrest Gump"
+]
 
-groundhog = movie.Movie("Groundhog Day")
+movies = []
 
-alien = movie.Movie("Alien")
+# Loop instantiates each movie name in the movie_list into a movie class object
+# and appends it into a new list movies[]
+for film in movie_list:
+    movies.append(movie.Movie(film))
 
-lalaland = movie.Movie("La La Land")
+# Pass the movie object list to the html python template
+classic_tomatoes.open_movies_page(movies)
 
-mortal_kombat = movie.Movie("Mortal Kombat")
-
-rocky = movie.Movie("Rocky")
-
-godfather = movie.Movie("The Godfather")
-
-green_mile = movie.Movie("The Green Mile")
-
-pulp_fiction = movie.Movie("Pulp Fiction")
-
-movies = [ groundhog, alien, lalaland, mortal_kombat, rocky, godfather, green_mile, pulp_fiction, forrest_gump ]
-
-# avatar.get_storyline()
-# avatar.get_release_date()
-# # print lalaland.movie_id
-# print avatar.trailer_youtube_url
-# lalaland.show_trailer()
-fresh_tomatoes.open_movies_page(movies)
-
-# print media.Movie.__doc__python 

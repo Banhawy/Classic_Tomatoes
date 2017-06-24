@@ -9,7 +9,7 @@ main_page_head_1 = '''
     <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Fresh Tomatoes!</title>
+        <title>Classic Tomatoes</title>
 
         <!-- Bootstrap 3 -->
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
@@ -31,6 +31,7 @@ main_page_head_1 = '''
                 top: -12px;
                 right: -12px;
                 z-index: 9001;
+                color: #aaaaaa;
             }
             #trailer-video {
                 width: 100%;
@@ -56,25 +57,25 @@ main_page_head_1 = '''
                 top: 0;
                 background-color: white;
             }
+            .modal-content h2{
+                text-alignment: center;
+            }
+            .align {
+                display: inline-block;
+            }
         </style>
             '''
-# Javascript section            
+# Javascript section
 main_page_head_2 = '''
         <script type="text/javascript" charset="utf-8">
         {js_snippets}
-         // Animate in the movies when the page loads
-        $(document).ready(function () {{
-          $('.movie-tile').hide().first().show("fast", function showNext() {{
-            $(this).next("div").show("fast", showNext);
-            $('.modal').hide();
-          }});
-        }});
         </script>
     </head>
 '''
 
 # Replicate this snippet for each movie added to data-bind their individual dates and descriptions
 javascript_snippet = '''
+   
     // Pause the video when the modal is closed
     $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {{
         // Remove the src so the player itself gets removed, as this is the only
@@ -103,7 +104,7 @@ main_page_content = '''
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#">My Entertainment Center</a>
+            <a class="navbar-brand" href="#">Classic Tomatoes</a>
           </div>
           <p class="navbar-text navbar-right">Built by <a href="https://github.com/Banhawy" target="_blank">Adham El Banhawy</a></p>
         </div>
@@ -116,26 +117,30 @@ main_page_content = '''
 </html>
 '''
 
-# a single movie card html template
+# a single movie card info html template
 movie_card_content = '''
     <!-- Movie Info Modal -->
     <div class="modal" id="poster-{movie_id}">
         <div class="modal-dialog">
             <div class="modal-content">
-            <h1>{movie_title}</h1>
-            <h2>{movie_release_date}</h2>
-            <h4>Storyline:</h4>
-            <p>{movie_storyline}</p>
-            <div class="scale-media" id="trailer-video-container-{movie_id}">
-            </div>
+                <div class="container-fluid">
+                    <h1>{movie_title}</h1>
+                    <h4 class="align">Release Date: </h4>
+                    <p class="align">{movie_release_date}</p>
+                    <h4>Storyline:</h4>
+                    <p>{movie_storyline}</p>
+                </div>
+                <!--Video Appended Here -->
+                <div class="scale-media" id="trailer-video-container-{movie_id}">
+                </div>
             </div>
         </div>
-        </div> 
+    </div>  
     '''
 
 # A single movie entry html template
 movie_tile_content = '''
-    <div class="col-md-6 col-lg-4 movie-tile movie-tile-{movie_id} text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#poster-{movie_id}">
+    <div class="col-md-6 col-lg-4 movie-tile movie-tile-{movie_id} no-modal text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#poster-{movie_id}">
         <img src="{poster_image_url}" width="220" height="342">
         <h2>{movie_title}</h2>
         <p><em>{movie_tagline}</em></p>
@@ -164,7 +169,8 @@ def create_movie_tiles_content(movies):
         )
     return content
 
-def create_movie_cards_content(movies):
+# This function binds movie_ids to {{movie_id}} targets in javascript section
+def create_js_content(movies):
     content = ''
     for movie in movies:
         content += javascript_snippet.format(
@@ -174,14 +180,14 @@ def create_movie_cards_content(movies):
 
 def open_movies_page(movies):
     # Create or overwrite the output file
-    output_file = open('fresh_tomatoes.html', 'w')
+    output_file = open('classic_tomatoes.html', 'w')
 
     # Replace the movie tiles placeholder generated content
     rendered_content = main_page_content.format(
         movie_tiles=create_movie_tiles_content(movies))
 
     js_header = main_page_head_2.format(
-        js_snippets=create_movie_cards_content(movies)
+        js_snippets=create_js_content(movies)
     )
 
 

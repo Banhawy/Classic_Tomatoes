@@ -38,17 +38,15 @@ class  Media():
 
 
 
-
+    # Function that returns the storyline of a movie
     def get_storyline(self):
         query_api_url = "https://api.themoviedb.org/3/movie/" + str(self.movie_id) + """?language=
         en-US&api_key=873c09566ed2be62fbd02102e48c399e"""
         details = requests.get(query_api_url).json()
         return details["overview"]
-        # print self.storyline
-
+        
+    # function that opens a browser window with a youtube video trailer of the movie object
     def show_trailer(self):
         webbrowser.open(self.trailer_youtube_url)
 
-
-    # def get_poster(self):
  
