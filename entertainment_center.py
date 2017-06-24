@@ -1,9 +1,9 @@
 import movie
 import fresh_tomatoes
 
-toy_story = movie.Movie("Titanic")
+forrest_gump = movie.Movie("Forrest Gump")
 
-avatar = movie.Movie("Groundhog Day")
+groundhog = movie.Movie("Groundhog Day")
 
 alien = movie.Movie("Alien")
 
@@ -19,7 +19,7 @@ green_mile = movie.Movie("The Green Mile")
 
 pulp_fiction = movie.Movie("Pulp Fiction")
 
-movies = [toy_story, avatar, alien, lalaland, mortal_kombat, rocky, godfather, green_mile, pulp_fiction ]
+movies = [ groundhog, alien, lalaland, mortal_kombat, rocky, godfather, green_mile, pulp_fiction, forrest_gump ]
 
 # avatar.get_storyline()
 # avatar.get_release_date()

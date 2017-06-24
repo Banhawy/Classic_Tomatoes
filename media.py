@@ -10,8 +10,8 @@ class  Media():
         self.title = title
 
         # API call to get movie_id which is used in subsequent API calls
-        self.api_url = """https://api.themoviedb.org/3/search/movie?api_key=873c09566ed2be62fbd02102
-        e48c399e&query=""" + self.title
+        self.api_url = '''https://api.themoviedb.org/3/search/movie?api_key=873c09566ed2be62''' \
+        '''fbd02102e48c399e&query=''' + self.title
         self.data = requests.get(self.api_url).json()
         self.movie_id = self.data["results"][0]["id"]
 
@@ -43,7 +43,7 @@ class  Media():
         query_api_url = "https://api.themoviedb.org/3/movie/" + str(self.movie_id) + """?language=
         en-US&api_key=873c09566ed2be62fbd02102e48c399e"""
         details = requests.get(query_api_url).json()
-        self.storyline = details["overview"]
+        return details["overview"]
         # print self.storyline
 
     def show_trailer(self):
