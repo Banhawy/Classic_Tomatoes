@@ -2,6 +2,8 @@
 
 Classic Tomatoes is a website built with python that displays a list of movies or TV shows on a single page as clickable tiles. Clicking a movie would show you some info and automatically plays a youtube trailer of that movie. 
 
+[View Demo](https://banhawy.github.io/Classic_Tomatoes/)
+
 
 ### Installation
 
