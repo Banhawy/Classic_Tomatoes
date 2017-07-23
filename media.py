@@ -32,7 +32,7 @@ class  Media():
                     break
         except IndexError:
             # If json object doesn't contain trailer or is empty returns a "Coming Soon" video
-            print  self.title + " needs to be uploaded manually"
+            print  (self.title + " needs to be uploaded manually")
             self.youtube_key = "0TjxnrWT8Es"
         self.trailer_youtube_url = "www.youtube.com/watch?v=" + self.youtube_key
 
