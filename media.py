@@ -17,7 +17,7 @@ class  Media():
 
         # GET media poster and concatentate to poster URL
         self.poster_path = self.data["results"][0]["poster_path"]
-        self.poster_image_url = "http://image.tmdb.org/t/p/w500/" + self.poster_path
+        self.poster_image_url = "https://image.tmdb.org/t/p/w500/" + self.poster_path
 
         # Api call to get media's youtube trailer key
         self.youtube_api_url = "https://api.themoviedb.org/3/movie/" + str(self.movie_id) + "/vid" \
